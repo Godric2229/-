@@ -1,0 +1,64 @@
+#include <iostream>
+#include <cmath> //数学库 
+long double abx(long double); 
+using namespace std;
+
+int main()
+{
+	while(true) //使循环不停 
+	{
+		cout <<"输入两个操作数的式子以进行计算（输入“0&0”查看操作方式）\n"; 
+        long double num1; //操作数1 
+		long double num2; //操作数2 
+		char op; //运算符 
+		cout <<" "; //为了使其看起来像递等式（技术原因） 
+		cin >>num1;
+		cout <<"\b"; //直接输入算式的技术 
+		cin >>op;
+		cout <<"\b";
+		cin >>num2;
+		cout <<"\b";
+		if (op == '+')
+		cout <<"="<<num1 + num2<<"\n\n"; //根据变量op决定运算方式 
+		else if (op == '-')
+		cout <<"="<<num1 - num2<<"\n\n";
+		else if (op == '*')
+		cout <<"="<<num1 * num2<<"\n\n"; 
+		else if (op == '/')
+		cout <<"="<<num1 / num2<<"\n\n";
+		else if (op == '%') //对求余数的特殊处理方法 
+		{
+			long double i = num1 / num2;
+			long long o = static_cast<long long>(i); 
+			cout <<"="<<o<<"......"<<num2 * (i - o)<<"\n\n";
+		}
+		else if (op == '^')
+		cout <<"="<<pow(num1,num2)<<"\n\n";
+		else if (op == '\\')
+		cout <<"="<<pow(num2,1.0/num1)<<"\n\n";
+		else if (op == '|')
+		cout <<"="<<abx(num1)<<"\n\n"; 
+		else if (op == '&')
+		cout <<"操作方法很简单，如下：\n"
+		       "先输入算式，可以是小数，整数，正数，负数；\n"
+		       "只能有两个操作数；\n"
+		       "支持符号有：\n"
+		       "  加：+\t减：-\t乘：*\t除：/\n"
+		       "  求余数：%\t乘方：^\t开乘方：\\\t绝对值：|\n"
+		       "|符号的左边是操作数，右边的数不影响结果。\n"
+			   "开乘方符号“\\”左面是根指数，右面是操作数。\n\n"
+			   "非法的输入会让程序停止运行。\n\n";
+		else
+		return 0;
+	} 
+	return 0;
+} 
+
+long double abx(long double i)
+{
+	if (i >= 0)
+	return i; 
+	else
+	i = 0-i;
+	return i; 
+}
